@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width,initial-scale=1.0">
+    
+    <title>Tareas</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 20px; 
+        }
+        h1, h2, h3 { 
+            color: #333; 
+        }
+        form { 
+            margin-bottom: 20px; 
+        }
+        input, button { 
+            margin: 5px 0; 
+            padding: 5px; 
+        }
+        ul { 
+            list-style-type: none; 
+            padding: 0; 
+        }
+        li { 
+            margin-bottom: 10px; 
+        }
+        a { 
+            color: #007bff; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin-right: 10px;
+        }
+    </style>
+    
+    </head>
+    <body>
+        <h1>Tareas</h1>
+        <form action="/add-tasks" method="POST">
+            <input type="text" name="title" placeholder="Título" required>
+            <input type="text" name="description" placeholder="Descripción">
+            <input type="number" name="priority" placeholder="Prioridad" required>
+            <input type="date" name="dueDate" required>
+            <button type="submit">Añadir Tarea</button>
+        </form>
+        <ul>
+            <% tasks.forEach(task => { %>
+                <li>
+                    <%= task.title %> - Prioridad: <%= task.priority %>, Fecha: <%= task.dueDate %>
+                    <form action="/remove-task" method="POST" style="display: inline;">
+                        <input type="hidden" name="title" value="<%= task.title %>">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+        <a href="/">Volver al inicio</a>
+    </body>
+    </html>
+    

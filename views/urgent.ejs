@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                line-height: 1.6; 
+                margin: 0; 
+                padding: 20px; 
+            }
+            h1, h2, h3 { 
+                color: #333; 
+            }
+            form { 
+                margin-bottom: 20px; 
+            }
+            input, button { 
+                margin: 5px 0; 
+                padding: 5px; 
+            }
+            ul { 
+                list-style-type: none; 
+                padding: 0; 
+            }
+            li { 
+                margin-bottom: 10px; 
+            }
+            a { 
+                color: #007bff; 
+                text-decoration: none; 
+            }
+            a:hover { 
+                text-decoration: underline; 
+            }
+            nav {
+                margin-bottom: 20px;
+            }
+            nav a {
+                margin-right: 10px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h1>Tareas Urgentes</h1>
+        <form action="/add-urgent" method="POST">
+            <input type="text" name="title" placeholder="Título" required>
+            <input type="text" name="description" placeholder="Descripción">
+            <input type="number" name="priority" placeholder="Prioridad" required>
+            <input type="date" name="dueDate" required>
+            <button type="submit">Añadir Tarea Urgente</button>
+        </form>
+        <ul>
+            <% urgentTasks.forEach(tasks=>{%>
+                <li><%=tasks.title%> -Prioridad<%=tasks.priority%>,Fecha:<%=tasks.dueDate%></li>
+                
+                </li>
+
+
+          <%  }) %>
+        </ul>
+        <form action="/process-urgent" method="POST">
+            <button type="submit">Procesar Tarea Urgentes</button>
+        </form>
+        <a href="/">Volver al inicio</a>
+    </body>
+</html>
